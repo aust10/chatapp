@@ -11,8 +11,8 @@ const authenticate = (req, res, next) => {
   const authorization = req.header('Authorization') || ''
   const [type, token] = authorization.split(' ')
   try {
-    if (type === 'Bearer' && jwt.verify(token, 'CHANGEME!')) { // change for depoyment
-      const payload = jwt.decode(token, 'CHANGEME!')
+    if (type === 'Bearer' && jwt.verify(token, process.env.KEY)) { // change for depoyment
+      const payload = jwt.decode(token, process.env.KEY)
       User.findOne({ _id: payload._id }, (err, userDoc) => { // change for deployment
         if (err) return res.status(500).send(err)
         req.user = userDoc

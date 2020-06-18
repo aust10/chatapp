@@ -10,11 +10,11 @@ function socketController (io) {
     // when a socket connects to 'chat message' use the message they sent and verify it with jwt.verify
     socket.on('chat message', (msg) => {
       try {
-        if (!jwt.verify(msg.token, 'CHANGEME!')) {
+        if (!jwt.verify(msg.token, process.env.KEY)) {
           return console.log('Not authorized')
         }
 
-        const payload = jwt.decode(msg.token, 'CHANGEME!')
+        const payload = jwt.decode(msg.token, process.env.KEY)
         // From the User model use the mongoose findOne syntax and get the user id
         User.findOne({ _id: payload._id }, async (err, userDoc) => {
           if (err) return console.error(err)
