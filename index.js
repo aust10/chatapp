@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const path = require('path')
 const morgan = require('morgan')
 // const fs = require('fs')
 
@@ -20,7 +21,7 @@ const port = 8000
 // const MESSAGES_PATH = './messages.txt'
 
 // set middleware
-app.use(express.static('static'))
+app.use(express.static(path.join(__dirname, 'react-client/build')))
 app.use(morgan('tiny'))
 app.use(express.json())
 
@@ -29,6 +30,10 @@ app.use('/', AuthController)
 
 // protected routes (requires authentication)
 app.use('/', ProtectedRoutes)
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/react-client/build/index.html'))
+})
 
 const connectDatabase = async (dbName = 'chatProject', hostname = 'localhost') => {
   const database = await mongoose.connect(`mongodb://${hostname}/${dbName}`,
