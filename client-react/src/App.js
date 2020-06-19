@@ -190,7 +190,7 @@ class App extends React.Component {
               <Route path='/login'>
                 <h1>Login</h1>
                 <Home onHandle={this.handleLogin.bind(this)} />
-                {this.state.loggedIn ? <Redirect to='/' /> : null}
+                {this.state.loggedIn ? <Redirect to={{ pathname: '/' }} /> : null}
               </Route>
               <Route path='/logout'>
                 <h1>Logged Out</h1>
@@ -200,7 +200,7 @@ class App extends React.Component {
               <Route path='/signup'>
                 <h1>Sign-Up</h1>
                 <Signup onHandle={this.handleSignUp.bind(this)} />
-                {this.state.loggedIn ? <Redirect to='/login' /> : null}
+                {this.state.loggedIn ? <Redirect to={{ pathname: '/login' }} /> : null}
               </Route>
               <Route path='/'>
                 <h1>Welcome to the Project Chat Homepage</h1>
