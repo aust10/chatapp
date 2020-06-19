@@ -21,7 +21,7 @@ const port = 8000
 // const MESSAGES_PATH = './messages.txt'
 
 // set middleware
-app.use(express.static(path.join(__dirname, 'react-client/build')))
+app.use(express.static(path.join(__dirname, 'client-react/build')))
 app.use(morgan('tiny'))
 app.use(express.json())
 
@@ -32,7 +32,7 @@ app.use('/', AuthController)
 app.use('/', ProtectedRoutes)
 
 app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/react-client/build/index.html'))
+  res.sendFile(path.join(__dirname + '/client-react/build/index.html'))
 })
 
 const connectDatabase = async (dbName = 'chatProject', hostname = 'localhost') => {
