@@ -178,6 +178,7 @@ class App extends React.Component {
       <Router>
         <div>
           <nav>
+            <p id='title'>Conversation Station</p>
             {this.state.loggedIn ? <div><span className='linkTo'><Link to='/'><button type='button'>Back</button></Link></span><span className='linkTo' onClick={this.handleLogOut.bind(this)}><Link to='/logout'><button type='button'>Logout</button></Link></span></div> : <div><span className='linkTo'><Link to='/'><button type='button'>Home</button></Link></span><span className='linkTo'><Link to='/login'><button type='button'>Login</button></Link></span><span className='linkTo'><Link to='/signup'><button type='button'>Signup</button></Link></span></div>}
           </nav>
 
@@ -203,12 +204,11 @@ class App extends React.Component {
                 {this.state.loggedIn ? <Redirect to={{ pathname: '/login' }} /> : null}
               </Route>
               <Route path='/'>
-                <h1>Welcome to the Project Chat Homepage</h1>
                 {this.state.loggedIn ? <Rooms
                   loggedIn={this.state.loggedIn}
                   username={this.state.username}
                   room={this.state.room}
-                  rooms={this.getRooms()} /> : <h1>Please log in.</h1>}
+                  rooms={this.getRooms()} /> : <Redirect to='/login' />}
               </Route>
             </Switch>
           </div>

@@ -11,7 +11,7 @@ function Message (props) {
     <span className='date'>{(new Date(props.message.date)).toLocaleString()}</span>
     <span className='nick'> {props.message.user.username}: </span>
     <span className='text'>{props.message.text} </span>
-    {props.message.user.username === props.username ? <span className='del'><button onClick={() => props.del(props.message)}>Delete</button></span> : null}
+    {props.message.user.username === props.username ? <span className='del'><button class='del' onClick={() => props.del(props.message)}>Delete</button></span> : null}
          </li>
 }
 
